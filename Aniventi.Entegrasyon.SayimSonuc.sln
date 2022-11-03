@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aniventi.Entegrasyon.SayimS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WepApi.Entegrasyon.Sayim", "WepApi.Entegrasyon.Sayim\WepApi.Entegrasyon.Sayim.csproj", "{6C0900C1-3CF3-40B2-8D9A-F3D82EC52CA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aniventi.Entegtasyon.Entity", "Aniventi.Entegtasyon.Entity\Aniventi.Entegtasyon.Entity.csproj", "{BFB0AC4C-D7D8-4473-9181-F5E29B51229F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6C0900C1-3CF3-40B2-8D9A-F3D82EC52CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C0900C1-3CF3-40B2-8D9A-F3D82EC52CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C0900C1-3CF3-40B2-8D9A-F3D82EC52CA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFB0AC4C-D7D8-4473-9181-F5E29B51229F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB0AC4C-D7D8-4473-9181-F5E29B51229F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB0AC4C-D7D8-4473-9181-F5E29B51229F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB0AC4C-D7D8-4473-9181-F5E29B51229F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
