@@ -38,6 +38,7 @@
       <HintPath>..\packages\DevExpress.Xpo.22.1.6\lib\net452\DevExpress.Xpo.v22.1.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Important\Singleton.cs" />
     <Compile Include="Important\TabloObject.cs" />
+    <Compile Include="Important\XpoManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
