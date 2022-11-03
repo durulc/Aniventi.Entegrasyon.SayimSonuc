@@ -139,9 +139,12 @@
     </Compile>
     <Compile Include="Manager\tblapp04_Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\ortak_Request.cs" />
     <Compile Include="Request\tblapp04verilerrequest.cs" />
+    <Compile Include="Request\tblapp04verilerSilrequest.cs" />
     <Compile Include="Response\ortak_Response.cs" />
     <Compile Include="Response\tblapp04verilerresponse.cs" />
+    <Compile Include="Response\tblapp04verilerSilresponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

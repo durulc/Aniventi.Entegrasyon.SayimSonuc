@@ -13,5 +13,12 @@ namespace WepApi.Entegrasyon.Sayim.Controllers
         {
             return new tblapp04_Manager().fn_tblapp04veriler(v_Gelen);
         }
+
+        [HttpPost]
+        [Route("api/tblapp04verilerSil")]
+        public tblapp04verilerSilresponse tblapp04verilerSil(tblapp04verilerSilrequest v_Gelen)
+        {
+            return new tblapp04_Manager().fn_tblapp04verilerSil(v_Gelen);
+        }
     }
 }
