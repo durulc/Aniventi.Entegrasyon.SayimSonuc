@@ -105,6 +105,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cIslemtblapp01.cs" />
     <Compile Include="cIslemtblapp04.cs" />
     <Compile Include="dbIslem\cVeriTabani.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -113,6 +114,7 @@
     <Compile Include="ProjectInstaller.Designer.cs">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="Response\tblapp01verilerresponse.cs" />
     <Compile Include="Response\tblapp04verilerresponse.cs" />
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>

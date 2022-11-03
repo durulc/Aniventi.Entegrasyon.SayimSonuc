@@ -19,6 +19,8 @@ namespace Aniventi.Entegrasyon.SayimSonuc
             _LogDosyasi.Info("Servis Başladı");
 
             ThreadPool.QueueUserWorkItem(new cIslemtblapp04().fn_VeriCekYaz);
+            ThreadPool.QueueUserWorkItem(new cIslemtblapp01().fn_VeriCekYaz);
+
         }
 
         protected override void OnStop()
