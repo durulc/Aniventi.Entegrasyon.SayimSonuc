@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityFramework\tbl06urunkodu.cs" />
+    <Compile Include="EntityFramework\tbl07veri.cs" />
     <Compile Include="EntityFramework\tblapp01.cs" />
     <Compile Include="EntityFramework\tblapp04.cs" />
     <Compile Include="Important\Singleton.cs" />
