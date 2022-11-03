@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
+﻿
+using log4net;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Aniventi.Entegrasyon.SayimSonuc
 {
     public partial class Service1 : ServiceBase
     {
+        static ILog _LogDosyasi = LogManager.GetLogger(typeof(Service1));
+
         public Service1()
         {
             InitializeComponent();
@@ -19,6 +16,9 @@ namespace Aniventi.Entegrasyon.SayimSonuc
 
         protected override void OnStart(string[] args)
         {
+            _LogDosyasi.Info("Servis Başladı");
+
+            ThreadPool.QueueUserWorkItem(new cIslemtblapp04().fn_VeriCekYaz);
         }
 
         protected override void OnStop()
