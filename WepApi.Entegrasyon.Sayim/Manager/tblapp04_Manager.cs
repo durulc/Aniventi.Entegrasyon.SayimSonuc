@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Aniventi.Entegtasyon.Entity.Important;
+using DevExpress.Xpo;
+using System;
 using WepApi.Entegrasyon.Sayim.Request;
 using WepApi.Entegrasyon.Sayim.Response;
 
@@ -15,6 +17,10 @@ namespace WepApi.Entegrasyon.Sayim.Manager
             try
             {
                 _Cevap = new tblapp04verilerresponse();
+
+                using (Session session = XpoManager.Instance.GetNewSession())
+                { 
+                }
             }
             catch (Exception ex)
             {
