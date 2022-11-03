@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aniventi.Entegrasyon.SayimSonuc", "Aniventi.Entegrasyon.SayimSonuc\Aniventi.Entegrasyon.SayimSonuc.csproj", "{CB6DB619-4BCA-440D-8EE5-F0C868496094}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WepApi.Entegrasyon.Sayim", "WepApi.Entegrasyon.Sayim\WepApi.Entegrasyon.Sayim.vbproj", "{3A0BA051-BA9B-4CDC-98AB-B18CC3946A82}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{CB6DB619-4BCA-440D-8EE5-F0C868496094}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB6DB619-4BCA-440D-8EE5-F0C868496094}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB6DB619-4BCA-440D-8EE5-F0C868496094}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A0BA051-BA9B-4CDC-98AB-B18CC3946A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A0BA051-BA9B-4CDC-98AB-B18CC3946A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A0BA051-BA9B-4CDC-98AB-B18CC3946A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A0BA051-BA9B-4CDC-98AB-B18CC3946A82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
