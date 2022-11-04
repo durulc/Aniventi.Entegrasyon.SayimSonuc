@@ -97,8 +97,6 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                 _LogDosyasi.Error(ex.ToString());
             }
         }
-
-
         private void fn_Sil(string v_id)
         {
 
