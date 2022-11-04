@@ -98,10 +98,10 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                 {
                     using (Session session = XpoManager.Instance.GetNewSession())
                     {
-                        List<viewVeri> _Dizim = (from _tbl07veriyedek in session.Query<tbl07veri>().Where(w => w.createuser.Equals("TAMAM") == false).Take(5).ToList()
+                        List<viewVeri> _Dizim = (from _tbl07veriyedek in session.Query<tbl07veri>()
                                                     join _tbl06urunkodu in session.Query<tbl06urunkodu>() on _tbl07veriyedek.urunid equals _tbl06urunkodu.id
-                                                    where _tbl07veriyedek.aktifetiket.ToString().Length >= 2
-                                                    select new viewVeri()
+                                                    where _tbl07veriyedek.aktifetiket.ToString().Length >= 2 && _tbl07veriyedek.createuser != "TAMAM"
+                                                 select new viewVeri()
                                                     {
                                                         zTabloId = _tbl07veriyedek.id,
                                                         _date = _tbl07veriyedek.databasekayitzamani,
@@ -111,7 +111,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                                                         zPasifEtiket = _tbl07veriyedek.pasifetiket,
                                                         zSeriNo = _tbl07veriyedek.serino,
                                                         zUrunAdi = _tbl06urunkodu.zurunadi
-                                                    }).Take(5).Distinct().ToList();
+                                                    }).Distinct().Take(5).ToList();
                         _Cevap._zDizi = new List<viewVeri>();
                         _Cevap._zDizi = _Dizim;
                         _Cevap = new tblapp07verilerresponse();

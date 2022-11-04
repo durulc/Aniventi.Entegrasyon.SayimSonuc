@@ -98,7 +98,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                 {
                     using (Session session = XpoManager.Instance.GetNewSession())
                     {
-                        List<tblapp01> _Dizim = session.Query<tblapp01>().Where(w => w.createuser.Equals("TAMAM") == false).Take(5).ToList();
+                        List<tblapp01> _Dizim = session.Query<tblapp01>().Where(w => w.createuser.Equals("TAMAM") == false).Take(50).ToList();
 
                         _Cevap = new tblapp01verilerresponse();
                         _Cevap.zSonuc = 1;

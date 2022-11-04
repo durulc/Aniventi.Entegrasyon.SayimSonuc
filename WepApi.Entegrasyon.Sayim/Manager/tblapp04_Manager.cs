@@ -97,7 +97,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                 else {
                     using (Session session = XpoManager.Instance.GetNewSession())
                     {
-                        List<tblapp04> _Dizim = session.Query<tblapp04>().Where(w => w.aktif == 1).Take(5).ToList();
+                        List<tblapp04> _Dizim = session.Query<tblapp04>().Where(w => w.aktif == 1).Take(50).ToList();
 
                         _Cevap = new tblapp04verilerresponse();
                         _Cevap.zSonuc = 1;
