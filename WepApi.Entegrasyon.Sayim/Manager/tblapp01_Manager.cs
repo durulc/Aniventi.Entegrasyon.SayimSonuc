@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using WepApi.Entegrasyon.Sayim.Request;
 using WepApi.Entegrasyon.Sayim.Response;
+using System.Configuration;
 
 namespace WepApi.Entegrasyon.Sayim.Manager
 {
@@ -96,9 +97,10 @@ namespace WepApi.Entegrasyon.Sayim.Manager
 
                 else
                 {
+                    var sayi = Convert.ToInt32(ConfigurationManager.AppSettings["Sayi"].ToString().Trim());
                     using (Session session = XpoManager.Instance.GetNewSession())
                     {
-                        List<tblapp01> _Dizim = session.Query<tblapp01>().Where(w => w.createuser.Equals("TAMAM") == false).Take(50).ToList();
+                        List<tblapp01> _Dizim = session.Query<tblapp01>().Where(w => w.createuser.Equals("TAMAM") != false).ToList();
 
                         _Cevap = new tblapp01verilerresponse();
                         _Cevap.zSonuc = 1;
@@ -131,7 +133,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
 
 
 
-                        return _Cevap;
+                        
 
 
                     }
@@ -145,7 +147,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                 _Cevap.zSonuc = -1;
                 _Cevap.zAciklama = ex.ToString();
 
-                return _Cevap;
+                
             }
 
             return _Cevap;
