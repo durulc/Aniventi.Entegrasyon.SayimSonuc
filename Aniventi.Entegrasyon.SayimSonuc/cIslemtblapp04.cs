@@ -60,7 +60,7 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                             _Sql = "insert into tblapp04(id, createuser, lastupdateuser, aktif, databasekayitzamani, guncellemezamani, \"sayimserino_C4EE00F3\", epc, sayimoda, sayimserino) "+
                                 " values (@id, @createuser, @lastupdateuser, @aktif, @databasekayitzamani, @guncellemezamani, @sayimserino1, @epc, @sayimoda, @sayimserino2) ";
 
-                             _Komut = new NpgsqlCommand(_Sql);
+                            _Komut = new NpgsqlCommand(_Sql);
                             _Komut.Parameters.AddWithValue("@id", _Details._Dizi[_iSayac].id);
                             _Komut.Parameters.AddWithValue("@createuser", "entegrasyon");
                             _Komut.Parameters.AddWithValue("@lastupdateuser", "entegrasyon");

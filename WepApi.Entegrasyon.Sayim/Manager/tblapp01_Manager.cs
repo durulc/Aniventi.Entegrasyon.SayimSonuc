@@ -43,10 +43,35 @@ namespace WepApi.Entegrasyon.Sayim.Manager
 
                         if (_Temp != null)
                         {
-                            _Temp.createuser = "TAMAM";
-                            _Temp.lastupdateuser = "entegrasyon";
-                            _Temp.guncellemezamani = DateTime.Now;
-                            _Temp.Save();
+                            try
+                            {
+
+                                _Temp.createuser = "TAMAM";
+                                _Temp.lastupdateuser = "entegrasyon";
+                                _Temp.guncellemezamani = DateTime.Now;
+                                _Temp.Save();
+
+                                _Cevap = new tblapp01verilerSilresponse();
+                                _Cevap.zSonuc = 1;
+                                _Cevap.zAciklama = "TAMAM";
+
+                                return _Cevap;
+                            }
+                            catch (Exception ex)
+                            {
+                                _Cevap = new tblapp01verilerSilresponse();
+                                _Cevap.zSonuc = 1;
+                                _Cevap.zAciklama = ex.ToString();
+
+                                return _Cevap;
+                            }
+                        }
+                        else {
+                            _Cevap = new tblapp01verilerSilresponse();
+                            _Cevap.zSonuc = 1;
+                            _Cevap.zAciklama ="null geldi";
+
+                            return _Cevap;
                         }
 
                         _Cevap = new tblapp01verilerSilresponse();
@@ -100,7 +125,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                     var sayi = Convert.ToInt32(ConfigurationManager.AppSettings["Sayi"].ToString().Trim());
                     using (Session session = XpoManager.Instance.GetNewSession())
                     {
-                        List<tblapp01> _Dizim = session.Query<tblapp01>().Where(w => w.createuser.Equals("TAMAM") != false).ToList();
+                        List<tblapp01> _Dizim = session.Query<tblapp01>().Where(w => w.createuser.Equals("TAMAM") != false).Take(100).ToList();
 
                         _Cevap = new tblapp01verilerresponse();
                         _Cevap.zSonuc = 1;
