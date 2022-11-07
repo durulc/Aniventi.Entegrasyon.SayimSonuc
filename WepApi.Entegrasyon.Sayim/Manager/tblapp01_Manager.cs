@@ -39,7 +39,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                 {
                     using (Session session = XpoManager.Instance.GetNewSession())
                     {
-                        tblapp01 _Temp = session.Query<tblapp01>().FirstOrDefault(w => w.aktif == 1 && w.id.Equals(v_Gelen.zTablodId));
+                        tblapp01 _Temp = session.Query<tblapp01>().FirstOrDefault(w => w.id == v_Gelen.zTablodId.ToString());
 
                         if (_Temp != null)
                         {
@@ -69,7 +69,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                         else {
                             _Cevap = new tblapp01verilerSilresponse();
                             _Cevap.zSonuc = 1;
-                            _Cevap.zAciklama ="null geldi";
+                            _Cevap.zAciklama ="null geldi::"  +v_Gelen.zTablodId.ToString();
 
                             return _Cevap;
                         }
@@ -93,7 +93,6 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                 return _Cevap;
             }
 
-            return _Cevap;
         }
 
         internal tblapp01verilerresponse fn_tblapp01veriler(tblapp01verilerrequest v_Gelen)
