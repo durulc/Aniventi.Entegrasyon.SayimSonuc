@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using WepApi.Entegrasyon.Sayim.Manager;
 using WepApi.Entegrasyon.Sayim.Request;
 using WepApi.Entegrasyon.Sayim.Response;
