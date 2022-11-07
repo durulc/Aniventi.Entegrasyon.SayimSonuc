@@ -113,7 +113,7 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                             }
                         }
                     }
-                        Thread.Sleep(TimeSpan.FromMinutes(5));
+                        Thread.Sleep(TimeSpan.FromMinutes(1));
                 }
             }
             catch (Exception ex)

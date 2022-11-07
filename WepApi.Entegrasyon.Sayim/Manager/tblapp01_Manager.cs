@@ -124,7 +124,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                     var sayi = Convert.ToInt32(ConfigurationManager.AppSettings["Sayi"].ToString().Trim());
                     using (Session session = XpoManager.Instance.GetNewSession())
                     {
-                        List<tblapp01> _Dizim = session.Query<tblapp01>().Where(w => w.createuser.Equals("TAMAM") != false).Take(100).ToList();
+                        List<tblapp01> _Dizim = session.Query<tblapp01>().Where(w => w.createuser != "TAMAM").Take(sayi).ToList();
 
                         _Cevap = new tblapp01verilerresponse();
                         _Cevap.zSonuc = 1;
@@ -149,17 +149,9 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                                 zparcasayisi = item.zparcasayisi,
                                 zetikettipi = item.zetikettipi,
                                 zetiketturu = item.zetiketturu,
-                                zrfidno = item.zrfidno,
-
-
+                                zrfidno = item.zrfidno
                             });
                         }
-
-
-
-                        
-
-
                     }
                 }
 
