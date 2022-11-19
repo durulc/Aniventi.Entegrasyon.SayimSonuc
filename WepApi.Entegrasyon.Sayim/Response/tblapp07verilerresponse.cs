@@ -6,6 +6,7 @@ namespace WepApi.Entegrasyon.Sayim.Response
     public class tblapp07verilerresponse : ortak_Response
     {
         public List<viewVeri> _zDizi { get; set; }
+        public List<viewVeri> _zDiziNew { get; set; }
 
     }
     public class viewVeri
@@ -17,6 +18,8 @@ namespace WepApi.Entegrasyon.Sayim.Response
         public string zPasifEtiket { get; set; }
         public string zAktifNo { get; set; }
         public string zSeriNo { get; set; }
+        public string zName { get; set; }
+        public string zSurname { get; set; }
         public string databasekayitzamani { get; set; }
         public DateTime _date { get; set; }
     }

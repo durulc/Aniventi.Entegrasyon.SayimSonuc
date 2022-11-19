@@ -27,12 +27,12 @@ namespace Aniventi.Entegrasyon.SayimSonuc
 
             cVeriTabani _myIslem = new cVeriTabani();
             DataTable _dTable;
-            int _iIdentityNumber =0;
+            int _iIdentityNumber = 0;
             #endregion
 
             try
             {
-                while(true)
+                while (true)
                 {
                     _ParametreJson = "";
                     _ParametreJson += "{\"zKullaniciAdi\":\"Aa1234--\",\"zSifre\":\"Aa1234.\"}";
@@ -94,8 +94,8 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                             _Komut = new NpgsqlCommand(_Sql);
                             _Komut.Parameters.Clear();
                             _Komut.Parameters.AddWithValue("@IdentityNumber", _iIdentityNumber);
-                            _Komut.Parameters.AddWithValue("@Name", "");
-                            _Komut.Parameters.AddWithValue("@SurName", "");
+                            _Komut.Parameters.AddWithValue("@Name", item.zName);
+                            _Komut.Parameters.AddWithValue("@SurName", item.zSurname);
                             _Komut.Parameters.AddWithValue("@email", item.zUrunAdi);
                             _Komut.Parameters.AddWithValue("@ldapusername", "1");
                             _Komut.Parameters.AddWithValue("@kullanicitip", _KullaniciTip);
@@ -105,14 +105,60 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                             _myIslem._fnSqlCalistir(_Komut);
 
                             #endregion
+
+
                             fn_Sil(item.zTabloId);
 
                             _LogDosyasi.Error(item.zTabloId);
 
 
                         }
+
+
+
+                        #region _tbl07 yeni kayıt
+                        foreach (var item in _Details._zDiziNew)
+                        {
+                            _Sql = "select id from tbl07veri where id = @id";
+                            _Komut = new NpgsqlCommand(_Sql);
+                            _Komut.Parameters.Clear();
+                            _Komut.Parameters.AddWithValue("@id", item.zTabloId);
+
+                            _myIslem = new cVeriTabani();
+                            _dTable = new DataTable();
+                            _dTable = _myIslem._fnDataTable(_Komut);
+
+                            if (_dTable.Rows.Count > 0)
+                            {
+                                fn_Sil(item.zTabloId);
+
+                                _LogDosyasi.Error("Tekrar eden kayıt bulundu :" + item.zTabloId);
+                            }
+                            else
+                            {
+                                _Sql = "insert into tbl07veri;(id, createuser, lastupdateuser, aktif, databasekayitzamani, guncellemezamani, odakarekod, urunid, pasifetiket, aktifetiket, serino) " +
+                           " values (@id, @createuser, @lastupdateuser, @aktif, @databasekayitzamani, @guncellemezamani, @odakarekod, @urunid, @pasifetiket, @aktifetiket,@serino) ";
+                                _Komut = new NpgsqlCommand(_Sql);
+                                _Komut.Parameters.Clear();
+                                _Komut.Parameters.AddWithValue("@id", item.zTabloId);
+                                _Komut.Parameters.AddWithValue("@createuser", "entegrasyon");
+                                _Komut.Parameters.AddWithValue("@lastupdateuser", "entegrasyon");
+                                _Komut.Parameters.AddWithValue("@aktif", 1);
+                                _Komut.Parameters.AddWithValue("@databasekayitzamani", item.databasekayitzamani);
+                                _Komut.Parameters.AddWithValue("@guncellemezamani", item.databasekayitzamani);
+                                _Komut.Parameters.AddWithValue("@odakarekod", item.zOdaBarkod);
+                                _Komut.Parameters.AddWithValue("@urunid", item.zUrunAdi);
+                                _Komut.Parameters.AddWithValue("@pasifetiket", item.zPasifEtiket);
+                                _Komut.Parameters.AddWithValue("@aktifetiket", item.zAktifNo);
+                                _Komut.Parameters.AddWithValue("@serino", item.zSeriNo);
+                                _myIslem = new cVeriTabani();
+                                _myIslem._fnSqlCalistir(_Komut);
+                                _LogDosyasi.Error("Tbl07 yani tablo eklmesi çalıştı" + item.zTabloId);
+                            }
+                        }
+                        #endregion}
                     }
-                        Thread.Sleep(TimeSpan.FromMinutes(1));
+                    Thread.Sleep(TimeSpan.FromMinutes(1));
                 }
             }
             catch (Exception ex)

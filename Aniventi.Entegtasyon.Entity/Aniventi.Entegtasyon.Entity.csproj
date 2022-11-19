@@ -52,6 +52,7 @@
     <Compile Include="EntityFramework\tbl07veri.cs" />
     <Compile Include="EntityFramework\tblapp01.cs" />
     <Compile Include="EntityFramework\tblapp04.cs" />
+    <Compile Include="EntityFramework\tblexcel.cs" />
     <Compile Include="Important\Singleton.cs" />
     <Compile Include="Important\TabloObject.cs" />
     <Compile Include="Important\XpoManager.cs" />

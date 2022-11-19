@@ -6,6 +6,9 @@ using System.Linq;
 using System.Collections.Generic;
 using WepApi.Entegrasyon.Sayim.Request;
 using WepApi.Entegrasyon.Sayim.Response;
+using System.Configuration;
+using DevExpress.Office.Utils;
+using System.Data;
 
 namespace WepApi.Entegrasyon.Sayim.Manager
 {
@@ -43,7 +46,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                         if (_Temp != null)
                         {
                             _Temp.createuser = "TAMAM";
-                            _Temp.lastupdateuser = "entegrasyon";
+                            _Temp.lastupdateuser = "newentegrasyon";
                             _Temp.guncellemezamani = DateTime.Now;
                             _Temp.Save();
                         }
@@ -67,7 +70,6 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                 return _Cevap;
             }
 
-            return _Cevap;
         }
 
         internal tblapp07verilerresponse fn_tblapp07veriler(tblapp07verilerrequest v_Gelen)
@@ -96,46 +98,51 @@ namespace WepApi.Entegrasyon.Sayim.Manager
 
                 else
                 {
+                    var sayi = Convert.ToInt32(ConfigurationManager.AppSettings["Sayi"].ToString().Trim());
                     using (Session session = XpoManager.Instance.GetNewSession())
                     {
                         List<viewVeri> _Dizim = (from _tbl07veriyedek in session.Query<tbl07veri>()
-                                                    join _tbl06urunkodu in session.Query<tbl06urunkodu>() on _tbl07veriyedek.urunid equals _tbl06urunkodu.id
-                                                    where _tbl07veriyedek.aktifetiket.ToString().Length >= 2 && _tbl07veriyedek.createuser != "TAMAM"
+                                                 join _tbl06urunkodu in session.Query<tbl06urunkodu>() on _tbl07veriyedek.urunid equals _tbl06urunkodu.id
+                                                 join _tblexcel in session.Query<tblexcel>() on _tbl07veriyedek.urunid.Replace(" ","") equals _tblexcel.id.DefaultIfEmpty()
+                                                 where _tbl07veriyedek.aktifetiket.ToString().Length >= 2 && _tbl07veriyedek.createuser != "TAMAM"
                                                  select new viewVeri()
-                                                    {
-                                                        zTabloId = _tbl07veriyedek.id,
-                                                        _date = _tbl07veriyedek.databasekayitzamani,
-                                                        zAktifNo = _tbl07veriyedek.aktifetiket,
-                                                        databasekayitzamani = "",
-                                                        zOdaBarkod = _tbl07veriyedek.odakarekod,
-                                                        zPasifEtiket = _tbl07veriyedek.pasifetiket,
-                                                        zSeriNo = _tbl07veriyedek.serino,
-                                                        zUrunAdi = _tbl06urunkodu.zurunadi
-                                                    }).Distinct().Take(5).ToList();
-                        _Cevap._zDizi = new List<viewVeri>();
+                                                 {
+                                                     zTabloId = _tbl07veriyedek.id,
+                                                     _date = _tbl07veriyedek.databasekayitzamani,
+                                                     zAktifNo = _tbl07veriyedek.aktifetiket,
+                                                     databasekayitzamani = "",
+                                                     zOdaBarkod = _tbl07veriyedek.odakarekod,
+                                                     zPasifEtiket = _tbl07veriyedek.pasifetiket,
+                                                     zSeriNo = _tbl07veriyedek.serino,
+                                                     zUrunAdi = _tbl06urunkodu.zurunadi,
+                                                     zName = _tblexcel.zsectorcode,
+                                                     zSurname = _tblexcel.zroomcode
+                                                 }).Distinct().Take(sayi).ToList();
+
+                        //string _Sql = "Select * from tbl07veri" +
+                        //    "join tbl06urunkodu on tbl07veri.urunid = tbl06urunkodu.id" +
+                        //    "left join tblexcel on replace(tbl07veri.odakarekod,' ',' ') = tblexcel.zkarekod+" +
+                        //    "where len(tbl07veri.aktifetiket)<=2 and tbl07veri.createuser != 'TAMAM'";
+               
+
+
+                        List<viewVeri> _Dizimtwo = (from _tbl07veriyedek in session.Query<tbl07veri>()
+                                                    where  _tbl07veriyedek.lastupdateuser.Equals("newentegrasyon") == false
+                                                    select new viewVeri()
+                                                 {
+                                                     zTabloId = _tbl07veriyedek.id,
+                                                     _date = _tbl07veriyedek.databasekayitzamani,
+                                                     zAktifNo = _tbl07veriyedek.aktifetiket,
+                                                     databasekayitzamani = "",
+                                                     zOdaBarkod = _tbl07veriyedek.odakarekod,
+                                                     zPasifEtiket = _tbl07veriyedek.pasifetiket,
+                                                     zSeriNo = _tbl07veriyedek.serino,
+                                                 }).Distinct().Take(sayi).ToList();
                         _Cevap._zDizi = _Dizim;
+                        _Cevap._zDiziNew = _Dizimtwo;
                         _Cevap = new tblapp07verilerresponse();
                         _Cevap.zSonuc = 1;
                         _Cevap.zAciklama = "";
-                        _Cevap._zDizi = new List<viewVeri>();
-
-                        foreach (var item in _Dizim)
-                        {
-                            _Cevap._zDizi.Add(new viewVeri()
-                            {
-                                zTabloId = item.zTabloId,
-                                _date = item._date,
-                                zAktifNo = item.zAktifNo,
-                                databasekayitzamani = "",
-                                zOdaBarkod = item.zOdaBarkod,
-                                zPasifEtiket = item.zPasifEtiket,
-                                zSeriNo = item.zSeriNo,
-                                zUrunAdi = item.zUrunAdi
-                            });
-                        }
-
-
-
                         return _Cevap;
 
 
@@ -153,7 +160,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                 return _Cevap;
             }
 
-            return _Cevap;
+     
 
         }
 

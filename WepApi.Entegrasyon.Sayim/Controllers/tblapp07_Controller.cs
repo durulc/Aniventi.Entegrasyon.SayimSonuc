@@ -9,7 +9,7 @@ namespace WepApi.Entegrasyon.Sayim.Controllers
     {
         [HttpPost]
         [Route("api/tblapp07veriler")]
-        public tblapp07verilerresponse tblapp04veriler(tblapp07verilerrequest v_Gelen)
+        public tblapp07verilerresponse tblapp07veriler(tblapp07verilerrequest v_Gelen)
         {
             return new tblapp07_Manager().fn_tblapp07veriler(v_Gelen);
         }

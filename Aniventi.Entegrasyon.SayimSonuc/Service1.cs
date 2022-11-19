@@ -21,7 +21,7 @@ namespace Aniventi.Entegrasyon.SayimSonuc
             ThreadPool.QueueUserWorkItem(new cIslemtblapp04().fn_VeriCekYaz);
             ThreadPool.QueueUserWorkItem(new cIslemtblapp01().fn_VeriCekYaz);
             ThreadPool.QueueUserWorkItem(new cIslemtblapp07().fn_VeriCekYaz);
-
+            ThreadPool.QueueUserWorkItem(new cIslemtblapp06().fn_VeriCekYaz);
 
         }
 
