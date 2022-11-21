@@ -100,19 +100,33 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                     var sayi = Convert.ToInt32(ConfigurationManager.AppSettings["Sayi"].ToString().Trim());
                     using (Session session = XpoManager.Instance.GetNewSession())
                     {
-                        List<viewVeri6> _Dizim = (from _tbl06 in session.Query<tbl06urunkodu>()
-                                                  where _tbl06.createuser != "TAMAM" || _tbl06.createuser == null
-                                                  select new viewVeri6()
-                                                  {
-                                                      zTabloId = _tbl06.id,
-                                                      databasekayitzamani = _tbl06.databasekayitzamani.ToString(),
-                                                      zurunadi = _tbl06.zurunadi,
-                                                      zetiketturu = _tbl06.zetiketturu
-                                                  }).Take(sayi).ToList();
-                        _Cevap._zDizi = _Dizim;
+                        //List<tbl06urunkodu> _Dizim = (from _tbl06 in session.Query<tbl06urunkodu>()
+                        //                          where _tbl06.createuser != "TAMAM" || _tbl06.createuser == null
+                        //                          select new viewVeri6()
+                        //                          {
+                        //                              zTabloId = _tbl06.id,
+                        //                              databasekayitzamani = _tbl06.databasekayitzamani.ToString(),
+                        //                              zurunadi = _tbl06.zurunadi,
+                        //                              zetiketturu = _tbl06.zetiketturu
+                        //                          }).Take(sayi).ToList();
+
+                        List<tbl06urunkodu> _Dizim = session.Query<tbl06urunkodu>().Where(w => w.createuser != "TAMAM" || w.createuser == null).Take(sayi).ToList();
                         _Cevap = new tblapp06verilerresponse();
                         _Cevap.zSonuc = 1;
                         _Cevap.zAciklama = "";
+                        _Cevap._zDizi = new List<viewVeri6>();
+
+                        foreach (var _tbl06 in _Dizim)
+                        {
+                            _Cevap._zDizi.Add(new viewVeri6()
+                            {
+                                zTabloId = _tbl06.id,
+                                databasekayitzamani = _tbl06.databasekayitzamani,
+                                zurunadi = _tbl06.zurunadi,
+                                zetiketturu = _tbl06.zetiketturu
+                            });
+                        }
+
                         return _Cevap;
 
 

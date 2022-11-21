@@ -61,7 +61,7 @@ namespace Aniventi.Entegrasyon.SayimSonuc
 
                         for (int _iSayac = 0; _iSayac < _Details._Dizi.Count; _iSayac++)
                         {
-                            _Sql = "insert into tblapp06(id, createuser, lastupdateuser, aktif, databasekayitzamani, guncellemezamani, zurunadi, zetiketturu) " +
+                            _Sql = "insert into tbl06urunkodu(id, createuser, lastupdateuser, aktif, databasekayitzamani, guncellemezamani, zurunadi, zetiketturu) " +
                                 " values (@id, @createuser, @lastupdateuser, @aktif, @databasekayitzamani, @guncellemezamani, @zurunadi, @zetiketturu) ";
 
                             _Komut = new NpgsqlCommand(_Sql);

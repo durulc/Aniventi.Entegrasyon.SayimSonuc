@@ -136,7 +136,7 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                             }
                             else
                             {
-                                _Sql = "insert into tbl07veri;(id, createuser, lastupdateuser, aktif, databasekayitzamani, guncellemezamani, odakarekod, urunid, pasifetiket, aktifetiket, serino) " +
+                                _Sql = "insert into tbl07veri(id, createuser, lastupdateuser, aktif, databasekayitzamani, guncellemezamani, odakarekod, urunid, pasifetiket, aktifetiket, serino) " +
                            " values (@id, @createuser, @lastupdateuser, @aktif, @databasekayitzamani, @guncellemezamani, @odakarekod, @urunid, @pasifetiket, @aktifetiket,@serino) ";
                                 _Komut = new NpgsqlCommand(_Sql);
                                 _Komut.Parameters.Clear();
@@ -153,7 +153,7 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                                 _Komut.Parameters.AddWithValue("@serino", item.zSeriNo);
                                 _myIslem = new cVeriTabani();
                                 _myIslem._fnSqlCalistir(_Komut);
-                                _LogDosyasi.Error("Tbl07 yani tablo eklmesi çalıştı" + item.zTabloId);
+                                _LogDosyasi.Error("Tbl07 yeni tablo eklmesi çalıştı" + item.zTabloId);
                             }
                         }
                         #endregion}

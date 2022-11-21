@@ -20,7 +20,7 @@ namespace WepApi.Entegrasyon.Sayim.Response
         public string zSeriNo { get; set; }
         public string zName { get; set; }
         public string zSurname { get; set; }
-        public string databasekayitzamani { get; set; }
+        public DateTime databasekayitzamani { get; set; }
         public DateTime _date { get; set; }
     }
 }

@@ -16,6 +16,6 @@ namespace WepApi.Entegrasyon.Sayim.Response
         public string zTabloId { get; set; }
         public string zetiketturu { get; set; }
         public string zurunadi { get; set; }
-        public string databasekayitzamani { get; set; }
+        public DateTime databasekayitzamani { get; set; }
     }
 }
