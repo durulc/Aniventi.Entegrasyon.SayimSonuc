@@ -58,28 +58,34 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                         string _strCevap = streamReader.ReadToEnd();
 
                         tblapp06verilerresponse _Details = JsonConvert.DeserializeObject<tblapp06verilerresponse>(_strCevap);
-
-                        for (int _iSayac = 0; _iSayac < _Details._Dizi.Count; _iSayac++)
+                        if(_Details != null) { 
+                        for (int _iSayac = 0; _iSayac < _Details._zDizi.Count; _iSayac++)
                         {
                             _Sql = "insert into tbl06urunkodu(id, createuser, lastupdateuser, aktif, databasekayitzamani, guncellemezamani, zurunadi, zetiketturu) " +
                                 " values (@id, @createuser, @lastupdateuser, @aktif, @databasekayitzamani, @guncellemezamani, @zurunadi, @zetiketturu) ";
 
                             _Komut = new NpgsqlCommand(_Sql);
-                            _Komut.Parameters.AddWithValue("@id", _Details._Dizi[_iSayac].zTabloId);
+                            _Komut.Parameters.AddWithValue("@id", _Details._zDizi[_iSayac].zTabloId);
                             _Komut.Parameters.AddWithValue("@createuser", "entegrasyon");
                             _Komut.Parameters.AddWithValue("@lastupdateuser", "entegrasyon");
                             _Komut.Parameters.AddWithValue("@aktif", 1);
-                            _Komut.Parameters.AddWithValue("@databasekayitzamani", _Details._Dizi[_iSayac].databasekayitzamani);
-                            _Komut.Parameters.AddWithValue("@guncellemezamani", _Details._Dizi[_iSayac].databasekayitzamani);
-                            _Komut.Parameters.AddWithValue("@zurunadi", _Details._Dizi[_iSayac].zurunadi);
-                            _Komut.Parameters.AddWithValue("@zetiketturu", _Details._Dizi[_iSayac].zetiketturu);
+                            _Komut.Parameters.AddWithValue("@databasekayitzamani", DateTime.Now);
+                            _Komut.Parameters.AddWithValue("@guncellemezamani", DateTime.Now);
+                            _Komut.Parameters.AddWithValue("@zurunadi", _Details._zDizi[_iSayac].zurunadi);
+                            _Komut.Parameters.AddWithValue("@zetiketturu", _Details._zDizi[_iSayac].zetiketturu);
                         
                             _myIslem = new cVeriTabani();
                             _myIslem._fnSqlCalistir(_Komut);
 
-                            fn_Sil(_Details._Dizi[_iSayac].zTabloId);
+                            fn_Sil(_Details._zDizi[_iSayac].zTabloId);
 
-                            _LogDosyasi.Error(_Details._Dizi[_iSayac].zTabloId);
+                            _LogDosyasi.Error(_Details._zDizi[_iSayac].zTabloId);
+                        }
+                        }
+                        else
+                        {
+                            _LogDosyasi.Error("Veri yok");
+
                         }
                     }
                         Thread.Sleep(TimeSpan.FromMinutes(1));

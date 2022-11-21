@@ -18,7 +18,7 @@ namespace Aniventi.Entegrasyon.SayimSonuc.Response
         public string zPasifEtiket { get; set; }
         public string zAktifNo { get; set; }
         public string zSeriNo { get; set; }
-        public string databasekayitzamani { get; set; }
+        public DateTime databasekayitzamani { get; set; }
         public DateTime _date { get; set; }
     }
 }

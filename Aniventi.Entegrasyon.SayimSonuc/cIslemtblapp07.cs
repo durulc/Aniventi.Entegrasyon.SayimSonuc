@@ -94,9 +94,9 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                             _Komut = new NpgsqlCommand(_Sql);
                             _Komut.Parameters.Clear();
                             _Komut.Parameters.AddWithValue("@IdentityNumber", _iIdentityNumber);
-                            _Komut.Parameters.AddWithValue("@Name", item.zName);
-                            _Komut.Parameters.AddWithValue("@SurName", item.zSurname);
-                            _Komut.Parameters.AddWithValue("@email", item.zUrunAdi);
+                            _Komut.Parameters.AddWithValue("@Name", String.IsNullOrEmpty(item?.zName) ? "":item.zName);
+                            _Komut.Parameters.AddWithValue("@SurName", String.IsNullOrEmpty(item?.zName) ? "" : item.zSurname);
+                            _Komut.Parameters.AddWithValue("@email", String.IsNullOrEmpty(item?.zUrunAdi) ? "" : item.zUrunAdi);
                             _Komut.Parameters.AddWithValue("@ldapusername", "1");
                             _Komut.Parameters.AddWithValue("@kullanicitip", _KullaniciTip);
                             _Komut.Parameters.AddWithValue("@TagId", _iIdentityNumber);
@@ -147,7 +147,7 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                                 _Komut.Parameters.AddWithValue("@databasekayitzamani", item.databasekayitzamani);
                                 _Komut.Parameters.AddWithValue("@guncellemezamani", item.databasekayitzamani);
                                 _Komut.Parameters.AddWithValue("@odakarekod", item.zOdaBarkod);
-                                _Komut.Parameters.AddWithValue("@urunid", item.zUrunAdi);
+                                _Komut.Parameters.AddWithValue("@urunid", String.IsNullOrEmpty(item?.zUrunAdi) ? "" : item.zUrunAdi);
                                 _Komut.Parameters.AddWithValue("@pasifetiket", item.zPasifEtiket);
                                 _Komut.Parameters.AddWithValue("@aktifetiket", item.zAktifNo);
                                 _Komut.Parameters.AddWithValue("@serino", item.zSeriNo);
