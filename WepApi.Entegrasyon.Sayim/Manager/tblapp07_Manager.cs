@@ -104,7 +104,7 @@ namespace WepApi.Entegrasyon.Sayim.Manager
                         List<viewVeri> _Dizim = (from _tbl07veriyedek in session.Query<tbl07veri>()
                                                  join _tbl06urunkodu in session.Query<tbl06urunkodu>() on _tbl07veriyedek.urunid equals _tbl06urunkodu.id
                                                  join _tblexcel in session.Query<tblexcel>() on _tbl07veriyedek.urunid.Replace(" ", "") equals _tblexcel.id.DefaultIfEmpty()
-                                                 where _tbl07veriyedek.aktifetiket.ToString().Length >= 2 && _tbl07veriyedek.createuser != "TAMAM"
+                                                 where _tbl07veriyedek.aktifetiket.ToString().Length >= 2 && _tbl07veriyedek.lastupdateuser != "newentegrasyon"
                                                  select new viewVeri()
                                                  {
                                                      zTabloId = _tbl07veriyedek.id,
