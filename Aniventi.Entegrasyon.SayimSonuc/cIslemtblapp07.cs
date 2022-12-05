@@ -29,11 +29,13 @@ namespace Aniventi.Entegrasyon.SayimSonuc
             DataTable _dTable;
             int _iIdentityNumber = 0;
             #endregion
-
-            try
+            while (true)
             {
-                while (true)
+                Thread.Sleep(TimeSpan.FromMinutes(1));
+
+                try
                 {
+
                     _ParametreJson = "";
                     _ParametreJson += "{\"zKullaniciAdi\":\"Aa1234--\",\"zSifre\":\"Aa1234.\"}";
 
@@ -94,7 +96,7 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                             _Komut = new NpgsqlCommand(_Sql);
                             _Komut.Parameters.Clear();
                             _Komut.Parameters.AddWithValue("@IdentityNumber", _iIdentityNumber);
-                            _Komut.Parameters.AddWithValue("@Name", String.IsNullOrEmpty(item?.zName) ? "":item.zName);
+                            _Komut.Parameters.AddWithValue("@Name", String.IsNullOrEmpty(item?.zName) ? "" : item.zName);
                             _Komut.Parameters.AddWithValue("@SurName", String.IsNullOrEmpty(item?.zName) ? "" : item.zSurname);
                             _Komut.Parameters.AddWithValue("@email", String.IsNullOrEmpty(item?.zUrunAdi) ? "" : item.zUrunAdi);
                             _Komut.Parameters.AddWithValue("@ldapusername", "1");
@@ -158,12 +160,14 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                         }
                         #endregion}
                     }
-                    Thread.Sleep(TimeSpan.FromMinutes(1));
+
+                    httpResponse.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-                _LogDosyasi.Error(ex.ToString());
+
+                catch (Exception ex)
+                {
+                    _LogDosyasi.Error(ex.ToString());
+                }
             }
         }
 

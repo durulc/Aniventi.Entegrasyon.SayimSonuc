@@ -28,11 +28,12 @@ namespace Aniventi.Entegrasyon.SayimSonuc
 
             DataTable _dTable = new DataTable();
             #endregion
-
-            try
+            while (true)
             {
-                while(true)
+                Thread.Sleep(TimeSpan.FromMinutes(1));
+                try
                 {
+
                     _ParametreJson = "";
                     _ParametreJson += "{\"zKullaniciAdi\":\"Aa1234--\",\"zSifre\":\"Aa1234.\"}";
 
@@ -113,13 +114,15 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                             }
                         }
                     }
-                        Thread.Sleep(TimeSpan.FromMinutes(1));
+                    httpResponse.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    _LogDosyasi.Error(ex.ToString());
                 }
             }
-            catch (Exception ex)
-            {
-                _LogDosyasi.Error(ex.ToString());
-            }
+
         }
         private void fn_Sil(string v_id)
         {

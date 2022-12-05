@@ -25,11 +25,13 @@ namespace Aniventi.Entegrasyon.SayimSonuc
 
             cVeriTabani _myIslem = new cVeriTabani();
             #endregion
-
-            try
+            while (true)
             {
-                while(true)
+                Thread.Sleep(TimeSpan.FromMinutes(1));
+
+                try
                 {
+
                     _ParametreJson = "";
                     _ParametreJson += "{\"zKullaniciAdi\":\"Aa1234--\",\"zSifre\":\"Aa1234.\"}";
 
@@ -57,7 +59,7 @@ namespace Aniventi.Entegrasyon.SayimSonuc
 
                         for (int _iSayac = 0; _iSayac < _Details._Dizi.Count; _iSayac++)
                         {
-                            _Sql = "insert into tblapp04(id, createuser, lastupdateuser, aktif, databasekayitzamani, guncellemezamani, \"sayimserino_C4EE00F3\", epc, sayimoda, sayimserino) "+
+                            _Sql = "insert into tblapp04(id, createuser, lastupdateuser, aktif, databasekayitzamani, guncellemezamani, \"sayimserino_C4EE00F3\", epc, sayimoda, sayimserino) " +
                                 " values (@id, @createuser, @lastupdateuser, @aktif, @databasekayitzamani, @guncellemezamani, @sayimserino1, @epc, @sayimoda, @sayimserino2) ";
 
                             _Komut = new NpgsqlCommand(_Sql);
@@ -80,12 +82,13 @@ namespace Aniventi.Entegrasyon.SayimSonuc
                             _LogDosyasi.Error(_Details._Dizi[_iSayac].id);
                         }
                     }
-                        Thread.Sleep(TimeSpan.FromMinutes(1));
+                    httpResponse.Close();
+
                 }
-            }
-            catch (Exception ex)
-            {
-                _LogDosyasi.Error(ex.ToString());
+                catch (Exception ex)
+                {
+                    _LogDosyasi.Error(ex.ToString());
+                }
             }
         }
 
